@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Färger -->
+    <color name="red">#B03820</color>
+    <color name="beige">#F0CBAA</color>
+    <color name="white">#FFFFFF</color>
+    <string name="app_name">ReceptApp</string>
+
+    <!-- Knappar -->
+    <string name="button_save">Spara</string>
+    <string name="button_new">Nytt recept</string>
+    <string name="button_add">+</string>
+    <string name="button_test">Test</string>
+    <string name="button_edit">Redigera</string>
+    <string name="button_delete">Ta bort</string>
+
+    <!-- Under textrutorna -->
+    <string name="recipe_name">Receptets namn</string>
+    <string name="recipe_instructions">Instruktioner</string>
+    <string name="recipe_unit">Mått</string>
+
+    <!-- Hints i textrutorna -->
+    <string name="name_recipe">Namnge ditt recept</string>
+    <string name="edit_instructions">Ange instruktioner</string>
+    <string name="edit_ingredient">Ange ingrediens</string>
+    <string name="edit_amount">Antal</string>
+    <string name="load_name">Ange receptnamn</string>
+
+    <!-- Övrigt -->
+    <string name="action_settings">Inställningar</string>
+    <string name="title_activity_main">Main</string>
+    <string name="title_activity_new_recipe">Nytt Recept</string>
+    <string name="ingredient">Ingrediens</string>
+    <string name="amount">Antal</string>
+
+    <!-- Måttenheter -->
+    <string-array name="units_array">
+        <item>dl</item>
+        <item>msk</item>
+        <item>tsk</item>
+        <item>krm</item>
+        <item>gram</item>
+        <item>st</item>
+    </string-array>
+    
+    <string-array name="menu">
+        <item>Test</item>
+        <item>Test2</item>
+    </string-array>
+
+    <string name="title_activity_on_item_selected_listener">OnItemSelectedListener</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_custom_on_item_selected_listener">CustomOnItemSelectedListener</string>
+    <string name="title_activity_view_recipe">ViewRecipe</string>
+    <string name="title_activity_save_recipe">SaveRecipe</string>
+    <string name="title_activity_edit_recipe">EditRecipe</string>
+
+</resources>

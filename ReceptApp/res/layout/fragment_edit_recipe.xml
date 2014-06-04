@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    		
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:paddingBottom="@dimen/activity_vertical_margin"
+	    android:paddingLeft="@dimen/activity_horizontal_margin"
+	    android:paddingRight="@dimen/activity_horizontal_margin"
+	    android:paddingTop="@dimen/activity_vertical_margin"
+	    tools:context="com.example.receptapp.EditRecipe$PlaceholderFragment" >
+	
+	<EditText
+	        android:id="@+id/edit_edit_name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/name_recipe"
+	        android:maxWidth="245dp"
+	        android:singleLine="true"
+	        android:width="245dp" >
+	
+	        <requestFocus />
+	    </EditText>
+	
+	    <TextView
+	        android:id="@+id/edit_recipe_name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/recipe_name"
+	        android:textSize="18sp" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:paddingTop="10dp" >
+	
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" >
+	
+	            <EditText
+	                android:id="@+id/edit_edit_ingredient"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:hint="@string/edit_ingredient"
+	                android:maxWidth="175dp"
+	                android:singleLine="true"
+	                android:width="175dp" >
+	            </EditText>
+	
+			    <TextView
+			        android:id="@+id/edit_ingredient"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/ingredient"
+			        android:textSize="18sp" />
+	            				    
+				<LinearLayout
+					android:id="@+id/edit_newLayout"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					
+				</LinearLayout>
+	
+	        </LinearLayout>
+	
+	        
+	       	<LinearLayout
+	            android:id="@+id/edit_layout"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" >
+	
+	            <EditText
+	                android:id="@+id/edit_edit_amount"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:hint="@string/edit_amount"
+	                android:inputType="numberDecimal"
+	                android:maxLines="1"
+	                android:maxWidth="70dp"
+	                android:singleLine="true"
+	                android:width="70dp" >
+	            </EditText>
+	
+	            <TextView
+	                android:id="@+id/edit_amount"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/amount"
+	                android:textSize="18sp" />
+	            
+	            <LinearLayout
+	                android:id="@+id/edit_amount_layout"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:orientation="vertical">
+	                
+	            </LinearLayout>
+	        </LinearLayout>
+	
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" >
+	
+	            <Spinner
+	                android:id="@+id/edit_unitSpinner"
+	                android:layout_width="wrap_content"
+	                android:layout_height="0dip"
+	                android:layout_weight="1" />
+	            
+	            <TextView android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/recipe_unit"
+	                android:textSize="18sp">
+	                
+	            </TextView>
+	            <LinearLayout
+	                android:id="@+id/edit_spinnerLayout"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:orientation="vertical">
+	                
+	            </LinearLayout>
+	        </LinearLayout>
+	    </LinearLayout>
+	
+	    <Button
+	        android:id="@+id/edit_add_ingredient"
+	        android:layout_width="50dp"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="10dp"
+	        android:text="@string/button_add" />
+	
+	    <EditText
+	        android:id="@+id/edit_edit_instructions"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/edit_instructions"
+	        android:lines="1"
+	        android:maxLines="1"
+	        android:paddingTop="10dp" >
+	    </EditText>
+	
+	    <TextView
+	        android:id="@+id/edit_instructions"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/recipe_instructions"
+	        android:textSize="18sp" />
+	
+	    <Button
+	        android:id="@+id/edit_button_save"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="10dp"
+	        android:text="@string/button_save"
+	        android:onClick="writeToFile" />
+	    
+	    <TextView
+	        android:id="@+id/edit_test"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	    
+	    <TextView
+	        android:id="@+id/abc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"></TextView>
+	
+	</LinearLayout>
+	</ScrollView>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.receptapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/receptapp_icon2"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.receptapp.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.receptapp.NewRecipeActivity"
+            android:label="@string/title_activity_new_recipe"
+            android:parentActivityName="com.example.receptapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.receptapp.MainActivity$PlaceholderFragment" />
+        </activity>
+
+        <!--
+        <activity
+            android:name="com.example.receptapp.OnItemSelectedListener"
+            android:label="@string/title_activity_on_item_selected_listener"
+            android:parentActivityName="com.example.receptapp.MainActivity$PlaceholderFragment" >
+
+        </activity>
+        -->
+        <!--
+             <activity
+            android:name="com.example.receptapp.CustomOnItemSelectedListener"
+            android:label="@string/title_activity_custom_on_item_selected_listener" >
+        </activity>
+        -->
+        <activity
+            android:name="com.example.receptapp.ViewRecipe"
+            android:label="@string/title_activity_view_recipe"
+            android:parentActivityName="com.example.receptapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.receptapp.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.receptapp.SaveRecipe"
+            android:label="@string/title_activity_save_recipe" >
+        </activity>
+        <activity
+            android:name="com.example.receptapp.EditRecipe"
+            android:label="@string/title_activity_edit_recipe"
+            android:parentActivityName="com.example.receptapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.receptapp.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>
