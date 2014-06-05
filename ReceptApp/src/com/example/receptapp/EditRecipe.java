@@ -77,6 +77,10 @@ public class EditRecipe extends ActionBarActivity {
 		}
 		catch(Exception e){ System.out.println("Gick inte hämta filnamnet!"); }
 		
+		if (fileName == null){
+			System.out.println("Strängen tom");
+		}
+		
 		allIngredients.clear();
 		allAmounts.clear();
 		allUnits.clear();
@@ -84,6 +88,7 @@ public class EditRecipe extends ActionBarActivity {
 		newIngredients.clear();
 		newAmounts.clear();
 		newUnits.clear();
+		instructions = "";
 		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -205,27 +210,51 @@ public class EditRecipe extends ActionBarActivity {
 	                }
 	            });
 				
+//				final float scale = getActivity().getResources().getDisplayMetrics().density;
+//				int dpsIngr = 175;
+//				int dpsAmount = 70;
+//				int pixelsIngr = (int) (dpsIngr * scale + 0.5f);
+//				int pixelsAmount = (int) (dpsAmount * scale + 0.5f);
+//				
+//				newIngredient.setWidth(pixelsIngr);
+//				newIngredient.setMaxWidth(pixelsIngr);
+//				newIngredient.setSingleLine(true);
+//				newAmount.setWidth(pixelsAmount);
+//				newAmount.setMaxWidth(pixelsAmount);
+//				newAmount.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+//				//ArrayAdapter<String> newAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, R.array.units_array);
+//				newIngredient.setHint("Ange ingrediens");
+//				newIngredient.setText(allIngredients.get(i));
+//				newAmount.setHint("Antal");
+//				newAmount.setText(allAmounts.get(i));
+				
 				final float scale = getActivity().getResources().getDisplayMetrics().density;
-				int dpsIngr = 175;
+				int dpsIngr = 170;
 				int dpsAmount = 70;
 				int pixelsIngr = (int) (dpsIngr * scale + 0.5f);
 				int pixelsAmount = (int) (dpsAmount * scale + 0.5f);
 				
+				layoutParams.bottomMargin = 20;
+				amountLayoutParams.bottomMargin = 20;
+				spinnerLayoutParams.bottomMargin = 25;
+				
+				newIngredient.setLayoutParams(layoutParams);
+				newIngredient.setHint("Ange ingrediens");
 				newIngredient.setWidth(pixelsIngr);
 				newIngredient.setMaxWidth(pixelsIngr);
 				newIngredient.setSingleLine(true);
+				newIngredient.setBackgroundColor(getResources().getColor(android.R.color.white));
+				newIngredient.setText(allIngredients.get(i));
+				
+				newAmount.setHint("Antal");
+				newAmount.setBackgroundColor(getResources().getColor(android.R.color.white));
 				newAmount.setWidth(pixelsAmount);
 				newAmount.setMaxWidth(pixelsAmount);
 				newAmount.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-				//ArrayAdapter<String> newAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, R.array.units_array);
-				newIngredient.setHint("Ange ingrediens");
-				newIngredient.setText(allIngredients.get(i));
-				newAmount.setHint("Antal");
 				newAmount.setText(allAmounts.get(i));
 				
 				try{
 					newIngredients.add(newIngredient);
-					System.out.println("Ny ingrediens: " + newIngredients.get(0).getText());
 					}
 				catch (Exception e) { System.out.println("Gick inte lägga till i ingredientslistan"); }
 				try{
@@ -262,7 +291,6 @@ public class EditRecipe extends ActionBarActivity {
 		                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) 
 		                {
 		                	String selected = parent.getItemAtPosition(pos).toString();
-		                	System.out.println(selected);
 		                }
 
 		                public void onNothingSelected(AdapterView<?> parent) 
@@ -271,9 +299,31 @@ public class EditRecipe extends ActionBarActivity {
 		                }
 		            });
 					
-					//ArrayAdapter<String> newAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, R.array.units_array);
+					final float scale = getActivity().getResources().getDisplayMetrics().density;
+					int dpsIngr = 170;
+					int dpsAmount = 70;
+					int pixelsIngr = (int) (dpsIngr * scale + 0.5f);
+					int pixelsAmount = (int) (dpsAmount * scale + 0.5f);
+					
+					layoutParams.bottomMargin = 20;
+					amountLayoutParams.bottomMargin = 20;
+					spinnerLayoutParams.bottomMargin = 25;
+					
+					newIngredient.setLayoutParams(layoutParams);
 					newIngredient.setHint("Ange ingrediens");
+					newIngredient.setWidth(pixelsIngr);
+					newIngredient.setMaxWidth(pixelsIngr);
+					newIngredient.setSingleLine(true);
+					newIngredient.setBackgroundColor(getResources().getColor(android.R.color.white));
+					
 					newAmount.setHint("Antal");
+					newAmount.setBackgroundColor(getResources().getColor(android.R.color.white));
+					newAmount.setWidth(pixelsAmount);
+					newAmount.setMaxWidth(pixelsAmount);
+					newAmount.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+					
+					//ArrayAdapter<String> newAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, R.array.units_array);
+
 					try{
 						newIngredients.add(newIngredient);
 						System.out.println("Ny ingrediens: " + newIngredients.get(0).getText());
@@ -289,8 +339,8 @@ public class EditRecipe extends ActionBarActivity {
 					catch(Exception e) { System.out.println("Gick inte lägga till i spinnerlistan"); }
 					
 					newIngredient.setLayoutParams(layoutParams);
-					newAmount.setLayoutParams(amountLayoutParams);
 					newSpinner.setLayoutParams(spinnerLayoutParams);
+					newAmount.setLayoutParams(amountLayoutParams);
 					newSpinner.setAdapter(newAdapter);
 					ingredientll.addView(newIngredient);
 					amountll.addView(newAmount);
@@ -314,10 +364,10 @@ public class EditRecipe extends ActionBarActivity {
 	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 
 	        AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
-	        alertbox.setTitle("Message");
+	        alertbox.setTitle("Bekräfta");
 	        alertbox.setMessage("Vill du lämna utan att spara?");
 
-	        alertbox.setPositiveButton("Yes",
+	        alertbox.setPositiveButton("Ja",
 	                new DialogInterface.OnClickListener() {
 	                    public void onClick(DialogInterface arg0, int arg1) {
 	                        onLeave();
@@ -325,7 +375,7 @@ public class EditRecipe extends ActionBarActivity {
 	                    }
 	                });
 
-	        alertbox.setNeutralButton("No",
+	        alertbox.setNeutralButton("Nej",
 	                new DialogInterface.OnClickListener() {
 	                    public void onClick(DialogInterface arg0, int arg1) {
 	                    }
@@ -338,7 +388,9 @@ public class EditRecipe extends ActionBarActivity {
 	        return super.onKeyDown(keyCode, event);
 	    }
 	}
+	
 	private String displayRecipe(TextView viewRecipe, String fileName){
+		
     	partsCounter = 0;
     	String line = "";
         String recipe = "";
@@ -383,12 +435,7 @@ public class EditRecipe extends ActionBarActivity {
 	        				allAmounts.add(parts.get(partsCounter));
 	        				allUnits.add(parts.get(partsCounter+1));
 	        				allIngredients.add(parts.get(partsCounter+2));
-	        				partsCounter = partsCounter + 3;
-	        				
-	        				for(int k = 0; k < allUnits.size(); k ++){
-	        					System.out.println("All units: "+ allUnits.get(k));
-	        				}
-	        				
+	        				partsCounter = partsCounter + 3;	        				
         				}
         				}
         				catch (Exception e){ System.out.println("Gick inte dela strängen");}
@@ -412,7 +459,7 @@ public class EditRecipe extends ActionBarActivity {
         	
         	inputStream.close();
         	recipe = stringBuilder.toString();
-        	viewRecipe.setText(recipe);
+        	//viewRecipe.setText(recipe);
         }
         catch(FileNotFoundException ex) {
         	System.out.println("Unable to open file '" + fileName + "'");
@@ -424,12 +471,14 @@ public class EditRecipe extends ActionBarActivity {
     		System.out.println("NullPointerException '" + fileName + "'");
     	}
         
+        System.out.println("Nästa steg");
         return recipe;
     }
 	
 	public void writeToFile(View view) {
 		try{
 			//Sparar infon till en ny fil
+			unfinished = 0;
 			
 			EditText editName = (EditText) findViewById(R.id.edit_edit_name);
 			String recipename = editName.getText().toString();
@@ -440,15 +489,7 @@ public class EditRecipe extends ActionBarActivity {
 			EditText editInstructions = (EditText) findViewById(R.id.edit_edit_instructions);
 			String instructions = editInstructions.getText().toString();
 			
-			if(new String(recipename + ".txt").equals(fileName)){
-				Toast.makeText(getApplicationContext(), "Samma namn!", Toast.LENGTH_SHORT).show();
-			}
-			else{
-				Toast.makeText(getApplicationContext(), "Nytt namn!", Toast.LENGTH_SHORT).show();
-				File dir = this.getFilesDir();
-        		File file = new File(dir, fileName.toLowerCase());
-        		boolean deleted = file.delete();
-			}
+			
 			
 			//String filename = recipename.toLowerCase() + ".txt";
 			//filename = filename.replace(" ", "_");
@@ -457,29 +498,75 @@ public class EditRecipe extends ActionBarActivity {
 			
         	File testFile = new File(this.getFilesDir() + "/" + fileName);
         	String path = testFile.getAbsolutePath();
-        	System.out.println("1 " + path);
- 
-			
+
 				if(recipename != null && amount != null &&
 					ingredient != null && ingredient.length() != 0
 					&& amount.length() != 0 && recipename.length() != 0){
 						String newIngredientsStr = "";
+						unfinished = 0;
 						for(int j = 0; j < newIngredients.size(); j++){
 							if (newIngredients.get(j).getText() != null && newIngredients.get(j).getText().length() != 0
 									&& newAmounts.get(j).getText() != null && newAmounts.get(j).getText().length() != 0){
+									System.out.println("Ingen är tom");
+									
+
 								newIngredientsStr += "\n" + newAmounts.get(j).getText().toString() + "#" +
 													newUnits.get(j).getSelectedItem() + "#" +
 													newIngredients.get(j).getText().toString();
+								//unfinished--;
 							}
 							else{
-								unfinished ++;
+								if(newIngredients.get(j).getText() == null || newIngredients.get(j).getText().length() == 0){
+									
+									if(newAmounts.get(j).getText() == null || newAmounts.get(j).getText().length() == 0){
+									unfinished --;
+										}
+									else{
+										System.out.println("Bara newIngredients är tom");
+										unfinished ++;
+									}
+								}
+								else if(newAmounts.get(j).getText() == null || newAmounts.get(j).getText().length() == 0){
+									System.out.println("newAmounts är tom");
+
+									if(newIngredients.get(j).getText() == null || newIngredients.get(j).getText().length() == 0){
+										System.out.println("Båda är tomma");
+										unfinished --;
+									}
+									else{
+										System.out.println("Bara newAmounts är tom");
+										unfinished ++;
+									}
+								}
 							}
 						}
+//						for(int j = 0; j < newIngredients.size(); j++){
+//							if (newIngredients.get(j).getText() != null && newIngredients.get(j).getText().length() != 0
+//									&& newAmounts.get(j).getText() != null && newAmounts.get(j).getText().length() != 0){
+//								newIngredientsStr += "\n" + newAmounts.get(j).getText().toString() + "#" +
+//													newUnits.get(j).getSelectedItem() + "#" +
+//													newIngredients.get(j).getText().toString();
+//								unfinished = 0;
+//							}
+//							else{
+//								unfinished ++;
+//							}
+//						}
 						
 						if(unfinished > 0){
 							Toast.makeText(getApplicationContext(), "Du har ofärdiga ingrediensrader!", Toast.LENGTH_SHORT).show();
 						}
 						else{
+							
+							if(new String(recipename + ".txt").equals(fileName)){
+								Toast.makeText(getApplicationContext(), "Receptet sparat som '" + recipename + "'!", Toast.LENGTH_SHORT).show();
+							}
+							else{
+								Toast.makeText(getApplicationContext(), "Receptet sparat som '" + recipename + "'!", Toast.LENGTH_SHORT).show();
+								File dir = this.getFilesDir();
+				        		File file = new File(dir, fileName.toLowerCase());
+				        		boolean deleted = file.delete();
+							}
 						String recipe = recipename + "\n\nIngredienser: \n" + amount + "#" + SPINNER + "#" + ingredient + newIngredientsStr + "\n\nInstruktioner: \n" + instructions;
 						FileOutputStream fOut = openFileOutput(fileName, MODE_WORLD_READABLE);
 						OutputStreamWriter osw = new OutputStreamWriter(fOut);
@@ -494,7 +581,6 @@ public class EditRecipe extends ActionBarActivity {
 	                	finish();
 						}
 						catch(Exception ex){System.out.println("Kunde inte starta ViewRecipe.java");}
-						Toast.makeText(getApplicationContext(), "Receptet sparat!", Toast.LENGTH_SHORT).show();
 						}
 					}
 				else{
@@ -507,7 +593,6 @@ public class EditRecipe extends ActionBarActivity {
 	
 	public void onLeave() {  
         Intent viewRecipe = new Intent(this, ViewRecipe.class);
-        System.out.println("fileName: " + fileName);
 		viewRecipe.putExtra(EXTRA_RECIPENAME, fileName.toLowerCase());
     	startActivity(viewRecipe);
     	finish();

@@ -12,19 +12,21 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AbsListView.LayoutParams;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 		public final static String EXTRA_CLICKED = "com.example.receptapp.CLICKED";
 		static String[] SavedFiles;
 		static ListView listSavedFiles;
+		static TextView emptyListText;
 		boolean backFromChild = false;
 		String units;
 		String aString;
@@ -80,6 +82,7 @@ public class MainActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            emptyListText = (TextView)rootView.findViewById(R.id.textView2);
             listSavedFiles = (ListView)rootView.findViewById(R.id.list);
             
             //Button editRecipeButton = (Button)rootView.findViewById(R.id.edit_recipe_button);
@@ -178,8 +181,16 @@ public class MainActivity extends ActionBarActivity {
     }
     
     private void listRecipes(ListView listSavedFiles){
+    	final android.widget.LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
     	try{
 	    	SavedFiles = getApplicationContext().fileList();
+	    	if (SavedFiles.length == 0){
+	    		emptyListText.setPadding(10, 10, 10, 10);
+	    		emptyListText.setText("Du har inga recept! Klicka på 'Nytt Recept' för att skapa ett!");
+	    		emptyListText.setBackgroundColor(getResources().getColor(android.R.color.white));
+	    		emptyListText.setLayoutParams(layoutParams);
+	    	}
 	    	Arrays.sort(SavedFiles);
 	        //String asString = Arrays.toString(SavedFiles);
 	        for(int i = 0; i < SavedFiles.length; i++){

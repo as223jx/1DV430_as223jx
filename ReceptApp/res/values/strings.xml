@@ -2,14 +2,16 @@
 <resources>
 
     <!-- Färger -->
-    <color name="red">#B03820</color>
+    <color name="red">#D95604</color>
     <color name="beige">#F0CBAA</color>
     <color name="white">#FFFFFF</color>
+    <color name="brown">#6B3F2C</color>
+    
     <string name="app_name">ReceptApp</string>
 
     <!-- Knappar -->
     <string name="button_save">Spara</string>
-    <string name="button_new">Nytt recept</string>
+    <string name="button_new">+ Nytt recept</string>
     <string name="button_add">+</string>
     <string name="button_test">Test</string>
     <string name="button_edit">Redigera</string>
@@ -19,6 +21,7 @@
     <string name="recipe_name">Receptets namn</string>
     <string name="recipe_instructions">Instruktioner</string>
     <string name="recipe_unit">Mått</string>
+    <string name="text_yourRecipes">Dina recept: </string>
 
     <!-- Hints i textrutorna -->
     <string name="name_recipe">Namnge ditt recept</string>

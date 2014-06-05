@@ -46,6 +46,7 @@ public class NewRecipeActivity extends ActionBarActivity {
 	//public static String units;
 	String unitString;
 	int unfinished = 0;
+	int emptyFields = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +155,6 @@ public class NewRecipeActivity extends ActionBarActivity {
 		                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) 
 		                {
 		                	String selected = parent.getItemAtPosition(pos).toString();
-		                	System.out.println(selected);
 		                }
 
 		                public void onNothingSelected(AdapterView<?> parent) 
@@ -174,6 +174,7 @@ public class NewRecipeActivity extends ActionBarActivity {
 					layoutParams.bottomMargin = 20;
 					amountLayoutParams.bottomMargin = 20;
 					spinnerLayoutParams.bottomMargin = 25;
+					
 					newIngredient.setLayoutParams(layoutParams);
 					newIngredient.setHint("Ange ingrediens");
 					newIngredient.setWidth(pixelsIngr);
@@ -256,16 +257,60 @@ public class NewRecipeActivity extends ActionBarActivity {
 					ingredient != null && ingredient.length() != 0
 					&& amount.length() != 0 && recipename.length() != 0){
 						String newIngredientsStr = "";
+						unfinished = 0;
 						for(int j = 0; j < newIngredients.size(); j++){
+							System.out.println(unfinished);
 							if (newIngredients.get(j).getText() != null && newIngredients.get(j).getText().length() != 0
 									&& newAmounts.get(j).getText() != null && newAmounts.get(j).getText().length() != 0){
+									System.out.println("Ingen är tom");
+									
+
 								newIngredientsStr += "\n" + newAmounts.get(j).getText().toString() + "#" +
 													newUnits.get(j).getSelectedItem() + "#" +
 													newIngredients.get(j).getText().toString();
+								//unfinished--;
 							}
 							else{
-								unfinished ++;
+								if(newIngredients.get(j).getText() == null || newIngredients.get(j).getText().length() == 0){
+									System.out.println("newIngredients är tom");
+									
+									if(newAmounts.get(j).getText() == null || newAmounts.get(j).getText().length() == 0){
+									System.out.println("Båda är tomma");
+									unfinished --;
+										}
+									else{
+										System.out.println("Bara newIngredients är tom");
+										unfinished ++;
+									}
+								}
+								else if(newAmounts.get(j).getText() == null || newAmounts.get(j).getText().length() == 0){
+									System.out.println("newAmounts är tom");
+
+									if(newIngredients.get(j).getText() == null || newIngredients.get(j).getText().length() == 0){
+										System.out.println("Båda är tomma");
+										unfinished --;
+									}
+									else{
+										System.out.println("Bara newAmounts är tom");
+										unfinished ++;
+									}
+								}
+								System.out.println("unf: " + unfinished);
+								//else{
+								//	System.out.println("Bara ena är tom");
+								//	unfinished ++;
+								//}
 							}
+//							if (newIngredients.get(j).getText() != null && newIngredients.get(j).getText().length() != 0
+//									&& newAmounts.get(j).getText() != null && newAmounts.get(j).getText().length() != 0){
+//								newIngredientsStr += "\n" + newAmounts.get(j).getText().toString() + "#" +
+//													newUnits.get(j).getSelectedItem() + "#" +
+//													newIngredients.get(j).getText().toString();
+//								unfinished = 0;
+//							}
+//							else{
+//								unfinished ++;
+//							}
 						}
 
 						if(unfinished > 0){
@@ -279,10 +324,6 @@ public class NewRecipeActivity extends ActionBarActivity {
 						osw.flush();
 						osw.close();
 						Toast.makeText(getApplicationContext(), "Receptet sparat!" + filename, Toast.LENGTH_SHORT).show();
-						
-						for(int i = 0; i < newUnits.size(); i++){
-							System.out.println("SELECTED ITEMS" + newUnits.get(i).getSelectedItem());
-						}
 						
 				    	Intent viewRecipe = new Intent(this, ViewRecipe.class);
 				    	viewRecipe.putExtra(EXTRA_RECIPENAME, filename);

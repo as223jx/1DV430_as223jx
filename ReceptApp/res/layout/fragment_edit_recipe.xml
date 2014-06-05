@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/beige"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
     		
@@ -18,8 +19,12 @@
 	        android:id="@+id/edit_edit_name"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:background="@color/white"
 	        android:hint="@string/name_recipe"
 	        android:maxWidth="245dp"
+	        android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:paddingLeft="12dp"
 	        android:singleLine="true"
 	        android:width="245dp" >
 	
@@ -48,10 +53,15 @@
 	                android:id="@+id/edit_edit_ingredient"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
+	                android:background="@color/white"
 	                android:hint="@string/edit_ingredient"
-	                android:maxWidth="175dp"
+	                android:maxWidth="170dp"
+	                android:paddingBottom="7dp"
+	                android:paddingTop="7dp"
+	                android:paddingLeft="12dp"
 	                android:singleLine="true"
-	                android:width="175dp" >
+	                android:width="170dp"
+	                android:layout_marginRight="5dp" >
 	            </EditText>
 	
 			    <TextView
@@ -82,10 +92,14 @@
 	                android:id="@+id/edit_edit_amount"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
+	                android:background="@color/white"
 	                android:hint="@string/edit_amount"
 	                android:inputType="numberDecimal"
 	                android:maxLines="1"
 	                android:maxWidth="70dp"
+	                android:paddingBottom="7dp"
+	                android:paddingTop="7dp"
+	                android:paddingLeft="12dp"
 	                android:singleLine="true"
 	                android:width="70dp" >
 	            </EditText>
@@ -137,17 +151,30 @@
 	        android:id="@+id/edit_add_ingredient"
 	        android:layout_width="50dp"
 	        android:layout_height="wrap_content"
-	        android:paddingTop="10dp"
+	        android:background="@color/red"
+	        android:textColor="@color/white"
+	        android:textSize="25sp"
+	        android:paddingTop="0dp"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginBottom="15dp"
 	        android:text="@string/button_add" />
 	
 	    <EditText
 	        android:id="@+id/edit_edit_instructions"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:scrollbars="vertical"
+	        android:maxHeight="200dp"
+	        android:gravity="top|left"
+	        android:background="@color/white"
 	        android:hint="@string/edit_instructions"
-	        android:lines="1"
-	        android:maxLines="1"
-	        android:paddingTop="10dp" >
+	        android:maxWidth="245dp"
+	        android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+	        android:width="245dp"
+            android:layout_marginTop="5dp" >
 	    </EditText>
 	
 	    <TextView
@@ -161,9 +188,14 @@
 	        android:id="@+id/edit_button_save"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:paddingTop="10dp"
-	        android:text="@string/button_save"
-	        android:onClick="writeToFile" />
+	        android:background="@color/red"
+	        android:layout_marginTop="5dp"
+	        android:onClick="writeToFile"
+	        android:textColor="@color/white"
+	        android:paddingTop="0dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:text="@string/button_save" />
 	    
 	    <TextView
 	        android:id="@+id/edit_test"

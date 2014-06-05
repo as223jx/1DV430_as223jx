@@ -8,10 +8,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -125,11 +128,11 @@ public class ViewRecipe extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_view_recipe,
 					container, false);
 			Button editRecipeButton = (Button) rootView.findViewById(R.id.edit_btn);
-			Button deleteRecipeButton = (Button) rootView.findViewById(R.id.delete_btn);
+			//Button deleteRecipeButton = (Button) rootView.findViewById(R.id.delete_btn);
 			
 			editRecipeButton.setOnClickListener(new OnClickListener() {
             	public void onClick(View v){
-            		System.out.println(openRecipe);
+            		System.out.println(openRecipe.toLowerCase());
             		
             		Intent editRecipeInt = new Intent(getActivity(), EditRecipe.class);
             		editRecipeInt.putExtra(EXTRA_FILENAME, openRecipe.toLowerCase());
@@ -138,18 +141,18 @@ public class ViewRecipe extends ActionBarActivity {
             	}
             });
 			
-			deleteRecipeButton.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					
-            		File dir = getActivity().getFilesDir();
-            		File file = new File(dir, openRecipe.toLowerCase());
-            		boolean deleted = file.delete();
-            		
-            		Intent mainActivity = new Intent(getActivity(), MainActivity.class);
-            		startActivity(mainActivity);
-            		getActivity().finish();
-				}
-			});
+//			deleteRecipeButton.setOnClickListener(new OnClickListener() {
+//				public void onClick(View v) {
+//					
+//            		File dir = getActivity().getFilesDir();
+//            		File file = new File(dir, openRecipe.toLowerCase());
+//            		boolean deleted = file.delete();
+//            		
+//            		Intent mainActivity = new Intent(getActivity(), MainActivity.class);
+//            		startActivity(mainActivity);
+//            		getActivity().finish();
+//				}
+//			});
 			
 			ViewRecipe read = (ViewRecipe) getActivity();
 
@@ -159,6 +162,40 @@ public class ViewRecipe extends ActionBarActivity {
 			return rootView;
 		}
 	}
+	
+	public void deleteRecipe(){
+		File dir = this.getFilesDir();
+		File file = new File(dir, openRecipe.toLowerCase());
+		boolean deleted = file.delete();
+		
+		Intent mainActivity = new Intent(this, MainActivity.class);
+		startActivity(mainActivity);
+		this.finish();
+	}
+	
+	public boolean confirm(View v) {
+	        AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+	        alertbox.setTitle("Bekräfta");
+	        alertbox.setMessage("Vill du verkligen ta bort receptet?");
+
+	        alertbox.setPositiveButton("Ja",
+	                new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface arg0, int arg1) {
+	                    	deleteRecipe();
+	                    }
+	                });
+
+	        alertbox.setNeutralButton("Nej",
+	                new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface arg0, int arg1) {
+	                    	
+	                    }
+	                });
+
+	        alertbox.show();
+	        return false;
+	    } 
+	
 	  
 	@Override
     public void onBackPressed() {
